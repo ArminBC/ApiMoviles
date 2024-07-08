@@ -1,15 +1,12 @@
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { config } from 'dotenv';
-import * as path from 'path';
+import { CustomValidationPipe } from './validation/CustomValidationPipe';
 
-config({
-  path: path.resolve(__dirname, '../.env'),
-});
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new CustomValidationPipe());
   await app.listen(3000);
 }
 bootstrap();
