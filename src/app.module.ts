@@ -15,19 +15,18 @@ import { Account } from './accounts/entities/account.entity';
 import { Card } from './accounts/entities/card.entity';
 import { Transference } from './transferences/entities/transference.entity';
 
-const Database: TypeOrmModuleOptions = {
-  type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: 'root',
-  database: 'central_bank',
-  synchronize: true,
-  entities: [Bank, User, Account, Card, Transference],
-};
 @Module({
   imports: [
-    TypeOrmModule.forRoot(Database),
+    TypeOrmModule.forRoot({
+      type: process.env.DB_TYPE as 'mysql',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
+      synchronize: process.env.DB_SYNCHRONIZE === 'true',
+      entities: [Bank, User, Account, Card, Transference],
+    }),
     UsersModule,
     BanksModule,
     TransferencesModule,
@@ -43,4 +42,4 @@ const Database: TypeOrmModuleOptions = {
     },
   ],
 })
-export class AppModule { }
+export class AppModule {}
