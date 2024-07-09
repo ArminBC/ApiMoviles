@@ -17,10 +17,10 @@ import { Transference } from './transferences/entities/transference.entity';
 
 const Database: TypeOrmModuleOptions = {
   type: 'mysql',
-  host: 'monorail.proxy.rlwy.net',
-  port: 29763,
+  host: 'roundhouse.proxy.rlwy.net',
+  port: 36501,
   username: 'root',
-  password: 'lcqCLzAUvtjQuzWnHrcHZLTxFnSMHuRH',
+  password: 'ofYwsuslNOmehLLsVQuZfYQQnefziYlh',
   database: 'railway',
   synchronize: true,
   entities: [Bank, User, Account, Card, Transference],
