@@ -33,9 +33,14 @@ export class UsersController {
   }
 
 
+  // @Get()
+  // findOne(@Request() req) {
+  //   return this.usersService.findOne(req.user.id);
+  // }
+
   @Get()
   findOne(@Request() req) {
-    return this.usersService.findOne(req.user.id);
+    return this.usersService.findOneBy(req.user.id);
   }
 
   @Patch()
