@@ -13,10 +13,13 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Public } from 'src/auth/constants';
 import { info, log } from 'console';
+import { UpdateResult } from 'typeorm';
+import { User } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) { }
+  
+  constructor(private readonly usersService: UsersService) {}
 
   @Public()
   @Post()
@@ -28,23 +31,39 @@ export class UsersController {
       console.log(err);
       return { status: 'Fail', message: err.sqlMessage, errors: [] };
     }
-    info(`Usuario ${createUserDto.email} fue creado!`)
+        info(`Usuario ${createUserDto.email} fue creado!`);
     return { status: 'Success', data: result };
   }
 
-
-  // @Get()
-  // findOne(@Request() req) {
-  //   return this.usersService.findOne(req.user.id);
-  // }
-
   @Get()
-  findOne(@Request() req) {
-    return this.usersService.findOneBy(req.user.id);
+  async findOne(@Request() req) {
+    let result: User;
+    try {
+      result = await this.usersService.findOneById(req.user.id);
+    } catch (err) {
+      return { status: 'Fail', message: 'Error al consultar usuario' };
+    }
+    return { status: 'Success', data: result };
   }
+
+ 
 
   @Patch()
-  update(@Request() req, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(req.user.id, updateUserDto);
+  async update(@Request() req, @Body() updateUserDto: UpdateUserDto): Promise<any> {
+    let result: UpdateResult;
+    try {
+      result = await this.usersService.update(req.user.id, updateUserDto);
+    } catch (err) {
+      return { status: 'fail', message: 'Error al actualizar usuario' };
+    }
+
+    console.info(result);
+    return {
+      status: 'success',
+      message: result.affected > 0 ? 'Usuario actualizado' : 'No se actualizó ningún dato',
+    };
   }
 }
+
+
+
