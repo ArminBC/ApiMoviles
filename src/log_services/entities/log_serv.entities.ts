@@ -27,10 +27,7 @@ export class LogService {
     referencedColumnName: "id",
     foreignKeyConstraintName: 'logserv_services'
   })
-  services?: Service
-
-
-  
+  service?: Service
 
 }
   

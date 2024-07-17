@@ -15,6 +15,7 @@ import { Account } from './accounts/entities/account.entity';
 import { Card } from './accounts/entities/card.entity';
 import { Transference } from './transferences/entities/transference.entity';
 import { Service } from './services/entitites/services.entitys';
+import { LogService } from './log_services/entities/log_serv.entities';
 
 const Database: TypeOrmModuleOptions = {
   type: 'mysql',
@@ -24,7 +25,7 @@ const Database: TypeOrmModuleOptions = {
   password: 'ofYwsuslNOmehLLsVQuZfYQQnefziYlh',
   database: 'railway',
   synchronize: true,
-  entities: [Bank, User, Account, Card, Transference, Service],
+  entities: [Bank, User, Account, Card, Transference, Service, LogService],
 };
 @Module({
   imports: [

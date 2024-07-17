@@ -1,6 +1,16 @@
 import { LogService } from 'src/log_services/entities/log_serv.entities';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import  {OneToMany} from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'; 
+
+
+
+
 @Entity()
 export class Service {
   @PrimaryGeneratedColumn()
@@ -12,7 +22,6 @@ export class Service {
   @Column({ type: 'boolean', default: true })
   status: boolean;
 
-  @OneToMany(() => LogService, (logs) => logs.services)
-logs: LogService[];
-
+  @OneToMany(() => LogService, (logse) => logse.service)
+  logse: LogService[];
 }

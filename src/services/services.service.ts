@@ -18,6 +18,7 @@ export class ServicesService {
       id: undefined,
       name: createServiceDto.name,
       status: createServiceDto.status ?? true,
+      logse: []
     };
     const insertResult = await this.serviceRepository.insert(newService);
     createServiceDto.id = insertResult.generatedMaps[0].id;
