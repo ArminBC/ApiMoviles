@@ -4,11 +4,12 @@ import {
     IsOptional,
     IsString,
     MaxLength,
+    
   } from 'class-validator';
   
   export class CreateLogServiceDto {
     
-  
+    
     @IsNumber()
     @IsNotEmpty()
     id_service: number;
