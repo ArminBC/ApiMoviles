@@ -10,4 +10,4 @@ import { Service } from './entitites/services.entitys';
   providers: [ServicesService],
   exports: [ServicesService],
 })
-export class ServicesModule {}
+export class ServicesModule { }  
