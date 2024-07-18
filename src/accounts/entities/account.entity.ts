@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Card } from './card.entity';
+import { LogService } from 'src/log_services/entities/log_serv.entities';
 
 @Entity()
 export class Account {
@@ -32,4 +33,7 @@ export class Account {
 
   @OneToMany(() => Card, (acc) => acc.account, { cascade: ['insert'] })
   card?: Card[];
+
+  @OneToMany(() => LogService, (logse) => logse.account)
+  logse?: LogService[];
 }

@@ -13,13 +13,24 @@ import {
 @Entity()
 export class LogService {
   @PrimaryGeneratedColumn()
-  id: number;
+  id?: number;
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   amount: number;
 
   @Column()
   reference: string;
+ 
+  @Column()
+  id_service: number;
+
+  @Column()
+  id_users: number;
+
+  @Column()
+  id_account: number;
+
+
 
   @ManyToOne(() => Service, (service) => service.id, {nullable: false})
   @JoinColumn({
@@ -28,6 +39,24 @@ export class LogService {
     foreignKeyConstraintName: 'logserv_services'
   })
   service?: Service
+
+  @ManyToOne(() => User, (user) => user.id, {nullable: false})
+  @JoinColumn({
+    name: 'id_users',
+    referencedColumnName: "id",
+    foreignKeyConstraintName: 'logserv_users'
+  })
+  user?: User
+
+
+  @ManyToOne(() => Account, (account) => account.id, {nullable: false})
+  @JoinColumn({
+    name: 'id_account',
+    referencedColumnName: "id",
+    foreignKeyConstraintName: 'logserv_account'
+  })
+  account?: Account
+
 
 }
   

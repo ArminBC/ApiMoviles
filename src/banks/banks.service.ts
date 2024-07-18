@@ -37,6 +37,6 @@ export class BanksService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} bank`;
+    return `This action remo  ves a #${id} bank`;
   }
 }

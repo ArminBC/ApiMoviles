@@ -1,5 +1,6 @@
 import { Account } from 'src/accounts/entities/account.entity';
 import { Bank } from 'src/banks/entities/bank.entity';
+import { LogService } from 'src/log_services/entities/log_serv.entities';
 import {
   Column,
   Entity,
@@ -45,4 +46,7 @@ export class User {
 
   @OneToMany(() => Account, (acc) => acc.user)
   account?: Account[];
+
+  @OneToMany(() => LogService, (logse) => logse.user)
+  logse?: LogService[];
 }

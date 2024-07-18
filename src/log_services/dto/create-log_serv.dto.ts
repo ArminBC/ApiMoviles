@@ -13,12 +13,12 @@ import {
   
     @IsNumber()
     @IsNotEmpty()
-    id_services: number;
-  
+    id_service: number;
+
     @IsNumber()
     @IsNotEmpty()
-    id_user: number;
-  
+    id_users: number;
+
     @IsNumber()
     @IsNotEmpty()
     id_account: number;
@@ -31,4 +31,7 @@ import {
     @IsNotEmpty()
     @MaxLength(255)
     reference: string;
+
+
+ 
   }
