@@ -13,8 +13,8 @@ import {
 
 @Entity()
 export class Service {
-  @PrimaryGeneratedColumn()
-  id: string;
+  @PrimaryGeneratedColumn("increment")
+  id: Number;
 
   @Column({ type: 'varchar', length: 50 })
   name: string;

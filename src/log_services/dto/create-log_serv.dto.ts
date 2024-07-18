@@ -7,9 +7,7 @@ import {
   } from 'class-validator';
   
   export class CreateLogServiceDto {
-    @IsNumber()
-    @IsOptional()
-    id?: number;
+    
   
     @IsNumber()
     @IsNotEmpty()

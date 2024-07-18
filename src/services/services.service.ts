@@ -30,8 +30,8 @@ export class ServicesService {
     return this.serviceRepository.find();
   }
 
-  findOne(id: string) {
-    return `This action returns a #${id} Services`;
+  async findOne(id: number): Promise<Service> {
+    return await this.serviceRepository.findOne({ where: { id } });
   }
 
   update(id: string, UpdateServicesDto: UpdateServicesDto) {

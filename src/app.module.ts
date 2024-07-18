@@ -16,6 +16,8 @@ import { Card } from './accounts/entities/card.entity';
 import { Transference } from './transferences/entities/transference.entity';
 import { Service } from './services/entitites/services.entitys';
 import { LogService } from './log_services/entities/log_serv.entities';
+import { ServicesModule } from './services/services.module';
+import { LogServicesModule } from './log_services/log_serv.module';
 
 const Database: TypeOrmModuleOptions = {
   type: 'mysql',
@@ -35,6 +37,8 @@ const Database: TypeOrmModuleOptions = {
     TransferencesModule,
     AccountsModule,
     AuthModule,
+    ServicesModule,
+    LogServicesModule
   ],
   controllers: [AppController],
   providers: [
