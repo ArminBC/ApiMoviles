@@ -16,6 +16,7 @@ export class BanksService {
       //id: 0,
       name: createBankDto.name,
       description: createBankDto.description,
+      bankb: []
       //status: 0
     }
     const insertResult = await this.bankRepository.insert(newBank);

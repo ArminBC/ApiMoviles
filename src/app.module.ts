@@ -20,6 +20,8 @@ import { ServicesModule } from './services/services.module';
 import { LogServicesModule } from './log_services/log_serv.module';
 import { ContactsModule } from './contacts/contacts.module';
 import { Contact } from './contacts/entities/contact.entity';
+import { BankBranches } from './bank_branches/entities/bankbranches.entities';
+import { BankBranchesModule } from './bank_branches/bankbranches.module';
 
 const Database: TypeOrmModuleOptions = {
   type: 'mysql',
@@ -29,7 +31,7 @@ const Database: TypeOrmModuleOptions = {
   password: 'ofYwsuslNOmehLLsVQuZfYQQnefziYlh',
   database: 'railway',
   synchronize: true,
-  entities: [Bank, User, Account, Card, Transference, Service, LogService, Contact],
+  entities: [Bank, User, Account, Card, Transference, Service, LogService, Contact, BankBranches],
 };
 @Module({
   imports: [
@@ -41,7 +43,8 @@ const Database: TypeOrmModuleOptions = {
     AuthModule,
     ServicesModule,
     LogServicesModule,
-    ContactsModule
+    ContactsModule,
+    BankBranchesModule
   ],
   controllers: [AppController],
   providers: [
