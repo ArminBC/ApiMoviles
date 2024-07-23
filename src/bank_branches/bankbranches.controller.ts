@@ -15,7 +15,6 @@ import { CreateBankBranchesDto } from './dto/create-bank_branches.dto';
   export class BankBranchesController {
     constructor(private readonly bankBranchesService: BankBranchesService) {}
   
-   
   
     @Post()
     async create(@Body() createBankBranchesDto: CreateBankBranchesDto) {
@@ -48,8 +47,8 @@ import { CreateBankBranchesDto } from './dto/create-bank_branches.dto';
       try {
         result = await this.bankBranchesService.findOneById(id);
       } catch (err) {
-        console.log(err);
-        return { status: 'ERROR 666', message: 'Error retrieving bank branch' };
+       
+        return { status: 'ERROR 666', message: 'Error retrieving ' };
       }
       return { status: 'Success', data: result };
     }

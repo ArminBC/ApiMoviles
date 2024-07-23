@@ -16,7 +16,7 @@ export class BankBranchesService {
   ) {}
 
   async create(createBankBranchDto: CreateBankBranchesDto): Promise<BankBranches> {
-    // Ensure the referenced bank exists
+
     const bank = await this.banksService.findOne(createBankBranchDto.id_bank);
     if (!bank) {
       throw new Error('Referenced bank not found');
@@ -27,34 +27,37 @@ export class BankBranchesService {
   }
 
   async findAll(): Promise<BankBranches[]> {
-    return this.bankBranchesRepository.find({ relations: ['bank'] });
+    return this.bankBranchesRepository.find();
   }
 
-  async findOneById(id: number): Promise<BankBranches> {
-    return this.bankBranchesRepository.findOne({ where: { id }, relations: ['bank'] });
+  async findOneById(id: number) {
+    return await this.bankBranchesRepository.findOne({ where: { id : id}});
+
   }
 
-  async update(id: number, updateBankBranchDto: CreateBankBranchesDto): Promise<void> {
-    const bankBranch = await this.findOneById(id);
-    if (!bankBranch) {
-      throw new Error('Bank branch not found');
-    }
-
-    // Ensure the referenced bank exists
-    const bank = await this.banksService.findOne(updateBankBranchDto.id_bank);
-    if (!bank) {
-      throw new Error('Referenced bank not found');
-    }
-
-    await this.bankBranchesRepository.update({ id }, updateBankBranchDto);
+  async findOne(id: number) {
+    return await this.bankBranchesRepository.findOne({ where: { id } });
   }
 
-  async remove(id: number): Promise<void> {
-    const bankBranch = await this.findOneById(id);
-    if (!bankBranch) {
-      throw new Error('Bank branch not found');
-    }
+  // async update(id: number, updateBankBranchDto: CreateBankBranchesDto): Promise<void> {
+  //   const bankBranch = await this.findOneById(id);
+  //   if (!bankBranch) {
+  //     throw new Error('Bank branch not found');
+  //   }
 
-    await this.bankBranchesRepository.delete(id);
+  //   const bank = await this.banksService.findOne(updateBankBranchDto.id_bank);
+  //   if (!bank) {
+  //     throw new Error('Referenced bank not found');
+  //   }
+
+  //   await this.bankBranchesRepository.update({ id }, updateBankBranchDto);
+  // }
+
+  // async remove(id: number): Promise<void> {
+  //   const bankBranch = await this.findOneById(id);
+  //   if (!bankBranch) {
+  //     throw new Error('Bank branch not found');
+  //   }
+
+  //   await this.bankBranchesRepository.delete(id);
   }
-}
