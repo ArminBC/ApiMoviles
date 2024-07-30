@@ -25,5 +25,7 @@ import {
         @IsBoolean()
         status?: boolean;
       
-  }
-  
+        @IsString()
+        @IsOptional()
+        icono?: string;
+}

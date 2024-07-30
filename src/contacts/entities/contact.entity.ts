@@ -11,7 +11,18 @@ export class Contact {
     @Column({ nullable: false })
     nickname: string
 
+    @Column({ nullable: false })
+    email: string
+
+    @Column({ nullable: false })
+    phone: string
+
+    @Column({ nullable: false })
+    bankname: string
+
     @Column({ nullable: false})
     account: string
+
+
 }
 

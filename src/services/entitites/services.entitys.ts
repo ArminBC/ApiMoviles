@@ -22,6 +22,9 @@ export class Service {
   @Column({ type: 'boolean', default: true })
   status: boolean;
 
+  @Column({type: 'varchar'})
+  icono: string;
+
   @OneToMany(() => LogService, (logse) => logse.service)
   logse: LogService[];
 }

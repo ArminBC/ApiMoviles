@@ -5,7 +5,6 @@ import { Service } from './entitites/services.entitys';
 import { CreateServicesDto } from './dto/create-services.dto';
 import { UpdateServicesDto } from './dto/update-services.dto';
 
-
 @Injectable()
 export class ServicesService {
   constructor(
@@ -18,6 +17,7 @@ export class ServicesService {
       id: undefined,
       name: createServiceDto.name,
       status: createServiceDto.status ?? true,
+      icono: createServiceDto.icono ?? '',
       logse: []
     };
     const insertResult = await this.serviceRepository.insert(newService);
@@ -34,11 +34,16 @@ export class ServicesService {
     return await this.serviceRepository.findOne({ where: { id } });
   }
 
-  update(id: string, UpdateServicesDto: UpdateServicesDto) {
-    return `This action updates a #${id} bank`;
+  async update(id: number, updateServiceDto: UpdateServicesDto): Promise<Service> {
+    await this.serviceRepository.update(id, updateServiceDto);
+    return this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} bank`;
+  async remove(id: number): Promise<void> {
+    await this.serviceRepository.delete(id);
+  }
+
+  async updateServiceIcon(id: number, imageUrl: string): Promise<void> {
+    await this.serviceRepository.update(id, { icono: imageUrl });
   }
 }

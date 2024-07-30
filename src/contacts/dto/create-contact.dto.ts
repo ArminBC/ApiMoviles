@@ -13,6 +13,18 @@ export class CreateContactDto {
     @IsNotEmpty()
     nickname: string;
 
+    @IsString()
+    @IsNotEmpty()
+    email: string;
+
+    @IsString()
+    @IsNotEmpty()
+    phone: string;
+
+    @IsString()
+    @IsNotEmpty()
+    bankname: string;
+
     @IsNotEmpty()
     @IsString()
     account: string;
