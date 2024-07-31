@@ -16,7 +16,7 @@ export class TransferencesController {
   @Get()
   async findAll(@Request() req) {
     return {
-      status: 'Success', data: await this.transferencesService.findAll(req.user.id)
+      status: 'Success', data: await this.transferencesService.findAll()
     };
   }
 

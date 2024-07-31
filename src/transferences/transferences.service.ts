@@ -54,10 +54,10 @@ export class TransferencesService {
     return 'Complete';
   }
 
-  findAll(id: number) {
-    return this.transferRepository.find({ select: { amount: true, id: true }, where: [{ id_sender: id }, { id_receptor: id }] });
+   async findAll() {
+    return await this.transferRepository.find();
   }
-
+  
   findOne(id: number) {
     return this.transferRepository.findOne({ where: { id: id } });
   }

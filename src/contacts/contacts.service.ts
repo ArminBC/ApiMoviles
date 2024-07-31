@@ -18,8 +18,8 @@ export class ContactsService {
     return this.contactRepository.save(createContactDto);
   }
 
-  async findAll() {
-    return await this.contactRepository.find();
+  findAll(id: number) {
+    return this.contactRepository.find({where: {id_user: id}});
   }
   
   findOne(id: number) {

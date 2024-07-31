@@ -14,7 +14,7 @@ export class ContactsController {
 
   @Get()
   async findAll(@Request() req) {
-    return {status: 'Success', data: await this.contactsService.findAll()};
+    return {status: 'Success', data: await this.contactsService.findAll(+req.user.id)};
   }
 
   @Get(':id')
