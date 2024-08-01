@@ -12,4 +12,12 @@ export class CreateTransferenceDto {
     @IsNumber()
     @IsNotEmpty()
     amount: number
+
+    @IsString()
+    @IsNotEmpty()
+    concept: string
+
+    @IsString()
+    @IsNotEmpty()
+    owner: string
 }

@@ -9,15 +9,14 @@ export class TransferencesController {
   @Post()
   async create(@Request() req, @Body() createTransferenceDto: CreateTransferenceDto) {
     return {
-      status: 'Success', message: await this.transferencesService.create(req.user.id, createTransferenceDto), data: { amount: createTransferenceDto.amount }
+      status: 'Success', message: await this.transferencesService.create(req.user.id, createTransferenceDto), data: { amount: createTransferenceDto.amount, concept: createTransferenceDto.concept , owner: createTransferenceDto.owner }
     };
   }
 
   @Get()
   async findAll(@Request() req) {
     return {
-      status: 'Success', data: await this.transferencesService.findAll()
-    };
+      status: 'Success', data: await this.transferencesService.findAll(req.user.id)};
   }
 
   @Get(':id')

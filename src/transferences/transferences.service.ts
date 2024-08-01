@@ -21,6 +21,9 @@ export class TransferencesService {
   ) { }
 
   async create(id_user: number, createTransferenceDto: CreateTransferenceDto) {
+    if (createTransferenceDto.user_account === createTransferenceDto.receptor_account) {
+      throw new UnauthorizedException('account cloned');
+    }
     const sender = await this.accountRepository.findOne({
       where: { id_user: id_user }, relations: {
         card: true,
@@ -41,7 +44,7 @@ export class TransferencesService {
         if (sender.balance > createTransferenceDto.amount) {
           this.accountRepository.update({ id_user: sender.id_user }, { balance: (sender.balance - createTransferenceDto.amount) })
           this.accountRepository.update({ id_user: receptor.id_user }, { balance: (receptor.balance + createTransferenceDto.amount) })
-          this.transferRepository.save({ id_receptor: receptor.id_user, id_sender: id_user, receptor_account: createTransferenceDto.receptor_account, sender_account: createTransferenceDto.user_account, amount: createTransferenceDto.amount })
+          this.transferRepository.save({ id_receptor: receptor.id_user, id_sender: id_user, receptor_account: createTransferenceDto.receptor_account, sender_account: createTransferenceDto.user_account, amount: createTransferenceDto.amount, concept: createTransferenceDto.concept, owner: createTransferenceDto.owner })
         } else {
           throw new UnauthorizedException('insufficient funds')
         }
@@ -54,10 +57,11 @@ export class TransferencesService {
     return 'Complete';
   }
 
-   async findAll() {
-    return await this.transferRepository.find();
+  findAll(id: number) {
+    return this.transferRepository.find({ select: {concept: true, owner: true,  amount: true, id: true }, where: [{ id_sender: id }, { id_receptor: id }] });
   }
-  
+
+
   findOne(id: number) {
     return this.transferRepository.findOne({ where: { id: id } });
   }

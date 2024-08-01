@@ -19,4 +19,11 @@ export class Transference {
 
     @Column()
     receptor_account: string
+
+    @Column()
+    concept: string
+
+    @Column()
+    owner: string
+
 }
