@@ -58,7 +58,7 @@ export class TransferencesService {
   }
 
   findAll(id: number) {
-    return this.transferRepository.find({ select: {concept: true, owner: true,  amount: true, id: true }, where: [{ id_sender: id }, { id_receptor: id }] });
+    return this.transferRepository.find({ select: {concept: true, owner: true,  amount: true, id: true, sender_account: true, receptor_account: true}, where: [{ id_sender: id }, { id_receptor: id }] });
   }
 
 
